@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import FormInput from '../form-input/form-input.component'
-import Buttom from '../button/button.component';
+import Button from '../button/button.component';
 
 import {
     createAuthUserWithEmailAndPassword,
@@ -44,11 +44,14 @@ const SignUpForm = () => {
             await createUserDocumentFromAuth(user, { displayName });
             resetFormFields();
         } catch (error) {
+            if (error.code === 'auth/email-already-in-use') {
+                alert('Cannot create user, email already in use')
+            }
             console.log('user creation encountered and error', error);
         }
 
 
-    }
+    };
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -98,7 +101,7 @@ const SignUpForm = () => {
                     name='confirmPassword'
                     value={confirmPassword}
                 />
-                <Buttom type='submit'>Sign Up</Buttom>
+                <Button type='submit'>Sign Up</Button>
             </form>
         </div>
     );
