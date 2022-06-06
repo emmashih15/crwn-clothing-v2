@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component';
@@ -64,7 +64,7 @@ const SignUpForm = () => {
             <h2>Don't have an account?</h2>
             <span>Sign up with your email and password</span>
             <form onSubmit={handleSubmit}>
-   
+
                 <FormInput
                     label='Display Name'
                     type='text'
