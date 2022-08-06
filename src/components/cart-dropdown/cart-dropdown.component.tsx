@@ -1,3 +1,5 @@
+import { useCallback, useMemo } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux/es/exports';
 
@@ -6,19 +8,19 @@ import { selectCartItems } from '../../store/cart/cart.selector';
 import Button from '../button/button.component';
 import CartItem from '../cart-item/cart-item.component';
 
-import { 
-    CartDropDownContainer, 
-    EmptyMessage, 
-    CartItems 
+import {
+    CartDropDownContainer,
+    EmptyMessage,
+    CartItems
 } from './cart-dropdown.styles';
 
 const CartDropdown = () => {
     const cartItems = useSelector(selectCartItems);
     const navigate = useNavigate();
 
-    const goToCheckoutHandler = () => {
-        navigate('/checkout')
-    }
+    const goToCheckoutHandler = useCallback(() => {
+        navigate('/checkout');
+    }, []);
 
     return (
         <CartDropDownContainer>
